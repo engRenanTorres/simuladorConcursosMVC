@@ -7,7 +7,7 @@ import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import java.util.Optional
+import javax.servlet.http.HttpSession
 
 @Controller
 @RequestMapping("/login")
@@ -23,21 +23,33 @@ class loginController (private val repository: UserRepository) {
   }
 
   @PostMapping
-  fun login(user: User, model: Model): String {
+  fun login(user: User, model: Model, session: HttpSession): String {
     logger.info("login($user)")
 
     val optional = repository.findByEmail(user.email)
     if (optional.isEmpty){
-      model.addAttribute("messageError","Usuário não encontrado.")
+      val messageError = "Usuário não encontrado."
+      logger.error("messageError",messageError)
+      model.addAttribute("messageError", messageError)
       return "login"
     }
 
     val userDatabase = optional.get()
     if (user.password != userDatabase.password){
-      model.addAttribute("messageError","Senha inválida.")
+      val messageError = "Senha inválida."
+      logger.error("messageError",messageError)
+      model.addAttribute("messageError", messageError)
       return "login"
     }
 
+    logger.info("messageLogin","Login realizado com sucesso")
+    session.setAttribute("currentUser", userDatabase)
+    return "redirect:/"
+  }
+
+  @GetMapping("/logout")
+  fun logout(session: HttpSession): String {
+    session.invalidate()
     return "redirect:/"
   }
 }

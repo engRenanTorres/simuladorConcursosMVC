@@ -33,6 +33,6 @@ class SignUpController(private val repository: UserRepository) {
       return "signup"
     }
       repository.save(user).also { logger.info("$user") }
-      return "redirect:/"
+      return "redirect:/login"
     }
 }
