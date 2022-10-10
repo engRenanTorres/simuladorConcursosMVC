@@ -1,4 +1,4 @@
-package com.renantorres.simuladorconcurso
+package com.renantorres.simuladorconcurso.controller
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

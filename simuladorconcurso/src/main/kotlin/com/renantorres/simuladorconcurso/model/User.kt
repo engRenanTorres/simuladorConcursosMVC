@@ -1,4 +1,4 @@
-package com.renantorres.simuladorconcurso
+package com.renantorres.simuladorconcurso.model
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue

@@ -1,5 +1,7 @@
-package com.renantorres.simuladorconcurso
+package com.renantorres.simuladorconcurso.controller
 
+import com.renantorres.simuladorconcurso.model.User
+import com.renantorres.simuladorconcurso.repository.UserRepository
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Controller
@@ -18,7 +20,7 @@ class loginController (private val repository: UserRepository) {
   fun form(model: Model): String {
     logger.info("form()...")
 
-    model.addAttribute("user",User())
+    model.addAttribute("user", User())
     return "login"
   }
 
