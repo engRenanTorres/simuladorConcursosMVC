@@ -1,5 +1,6 @@
 package com.renantorres.simuladorconcurso.config
 
+import com.renantorres.simuladorconcurso.model.EngineerArea
 import com.renantorres.simuladorconcurso.model.User
 import com.renantorres.simuladorconcurso.model.UserPermission
 import com.renantorres.simuladorconcurso.repository.EngineerAreaRepository
@@ -12,13 +13,28 @@ import org.springframework.context.annotation.Configuration
 class DataLoader(
   private val userRepository: UserRepository,
   private val areaRepository: EngineerAreaRepository
-  ): CommandLineRunner {
+) : CommandLineRunner {
 
   private val logger = LoggerFactory.getLogger(javaClass)
-
   override fun run(vararg args: String?) {
 
-    if (userRepository.count() == 0L ){ //L diz que o número será um long
+    insertAdmIfUserBDIsEmpty()
+
+    InsertDefaultAreasIfAreasTableIsEmpty()
+  }
+
+  private fun InsertDefaultAreasIfAreasTableIsEmpty() {
+    if (areaRepository.count() == 0L) {
+      listOf(
+        EngineerArea(name = "Engenharia de Segurança"),
+        EngineerArea(name = "Engenharia Civil")
+      ).also { areaRepository.saveAll(it) }
+      //areaRepository.findAll().forEach{  println(it)  }
+    }
+  }
+
+  private fun insertAdmIfUserBDIsEmpty() {
+    if (userRepository.count() == 0L) { //L diz que o número será um long
       val userAdmin = User(
         name = "Administrador",
         lastName = "adm",
@@ -28,9 +44,5 @@ class DataLoader(
       )
       userRepository.save(userAdmin)
     }
-
-//    if (areaRepository.count() == 0L ){
-//
-//    }
   }
 }

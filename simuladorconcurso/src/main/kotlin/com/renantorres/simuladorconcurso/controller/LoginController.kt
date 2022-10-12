@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession
 
 @Controller
 @RequestMapping("/login")
-class loginController (private val repository: UserRepository) {
+class LoginController(private val repository: UserRepository) {
   private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
   @GetMapping
@@ -29,22 +29,22 @@ class loginController (private val repository: UserRepository) {
     logger.info("login($user)")
 
     val optional = repository.findByEmail(user.email)
-    if (optional.isEmpty){
+    if (optional.isEmpty) {
       val messageError = "Usuário não encontrado."
-      logger.error("messageError",messageError)
+      logger.error("messageError", messageError)
       model.addAttribute("messageError", messageError)
       return "login"
     }
 
     val userDatabase = optional.get()
-    if (user.password != userDatabase.password){
+    if (user.password != userDatabase.password) {
       val messageError = "Senha inválida."
-      logger.error("messageError",messageError)
+      logger.error("messageError", messageError)
       model.addAttribute("messageError", messageError)
       return "login"
     }
 
-    logger.info("messageLogin","Login realizado com sucesso")
+    logger.info("messageLogin", "Login realizado com sucesso")
     session.setAttribute("currentUser", userDatabase)
     return "redirect:/"
   }

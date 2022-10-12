@@ -25,16 +25,16 @@ class SignUpController(private val repository: UserRepository) {
   }
 
   @PostMapping
-  fun saveUser(user: User, confirmPassword: String, model:Model): String {
+  fun saveUser(user: User, confirmPassword: String, model: Model): String {
     logger.info("save()...")
 
-    if(user.password != confirmPassword) {
+    if (user.password != confirmPassword) {
       val errorMessage = "Senhas não conferem..."
       logger.error(errorMessage)
       model.addAttribute("messageError", errorMessage)
       return "signup"
     }
-      repository.save(user).also { logger.info("$user") }
-      return "redirect:/login"
-    }
+    repository.save(user).also { logger.info("$user") }
+    return "redirect:/login"
+  }
 }

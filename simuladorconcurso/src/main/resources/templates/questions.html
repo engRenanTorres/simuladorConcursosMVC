@@ -91,7 +91,7 @@
                   <i class='bx bx-user nav_icon'></i>
                   <span class="nav_name">Users</span>
                 </a>
-                <a class="nav_link" href="questions.html" th:href="@{/question}">
+                <a href="#" class="nav_link active" >
                   <i class='bx bx-message-square-detail nav_icon'></i>
                   <span class="nav_name">Questions</span>
                 </a>
@@ -127,17 +127,27 @@
   <div class="row">
     <div class="col-md-8 question-main">
       <div class="question-post">
-        <h1 class="question-post-title" th:text="#{home.area}" >Question Area</h1>
-        <p class="question-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
+        <h2 class="question-post-title" th:text="#{home.area}" >Question Area</h2>
+        <form action="questions.html" th:action="@{/question}" th:object="${question}" method="post">
+          <div class="form-group">
+            <label>Banca</label>
+            <input type="text" th:field="*{banca}" class="form-control" autofocus required>
+          </div>
 
-        <p>This question post shows a few different types of content that’s supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
-        <hr>
-        <p>Cum sociis natoque penatibus et magnis <a href="#">dis parturient montes</a>, nascetur ridiculus mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.</p>
-        <blockquote>
-          <p>Curabitur blandit tempus porttitor. <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-        </blockquote>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>      </div><!-- /.question-post -->
+          <div class="form-group">
+            <label>Enunciado</label>
+            <textarea th:field="*{eunciado}" rows="10" class="form-control" required></textarea>
+          </div>
 
+          <div class="form-group">
+            <label>Alternativa (a)</label>
+            <textarea th:field="*{alternativa}" rows="3" class="form-control" required></textarea>
+          </div>
+        </form>
+      </div><!-- /.question-post -->
+      <button class="btn btn-primary" type="submit">
+        Salvar
+      </button>
       <nav class="question-pagination">
         <a class="btn btn-outline-primary" th:text="#{home.before}" href="#">
           <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i> Older
