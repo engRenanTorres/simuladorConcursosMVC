@@ -128,7 +128,13 @@
     <div class="col-md-8 question-main">
       <div class="question-post">
         <h2 class="question-post-title" th:text="#{home.area}" >Question Area</h2>
-        <form action="questions.html" th:action="@{/question}" th:object="${question}" method="post">
+
+        <form action="index.html" th:action="@{/question}" th:object="${question}" method="post">
+
+          <select class="form-select" aria-label="Select engineer area" >
+            <option value="1" th:each="area: ${engineerAreas}" th:value="${area.id}" th:text="${area.name}">One</option>
+          </select>
+
           <div class="form-group">
             <label>Banca</label>
             <input type="text" th:field="*{banca}" class="form-control" autofocus required>
@@ -136,18 +142,18 @@
 
           <div class="form-group">
             <label>Enunciado</label>
-            <textarea th:field="*{eunciado}" rows="10" class="form-control" required></textarea>
+            <textarea th:field="*{enunciado}" rows="10" class="form-control" required></textarea>
           </div>
 
           <div class="form-group">
             <label>Alternativa (a)</label>
             <textarea th:field="*{alternativa}" rows="3" class="form-control" required></textarea>
           </div>
+          <button class="btn btn-primary" type="submit">
+            Salvar
+          </button>
         </form>
       </div><!-- /.question-post -->
-      <button class="btn btn-primary" type="submit">
-        Salvar
-      </button>
       <nav class="question-pagination">
         <a class="btn btn-outline-primary" th:text="#{home.before}" href="#">
           <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i> Older

@@ -8,11 +8,14 @@ data class Question(
   @Id
   @GeneratedValue
   var id:Long = 0,
-  @ManyToOne
-  var banca: Banca = Banca(name="fgv"),
+  //@ManyToOne
+  //var banca: Banca = Banca(name="fgv"),
+
+  var banca: String = "fgv",
   var nivel: String = "",
-  @ManyToOne
-  var cargo: EngineerArea = EngineerArea(),
+  //@ManyToOne
+  //var cargo: EngineerArea = EngineerArea(name = "ambiental"),
+  var cargo: String ="ambiental",
   var concurso:String = "",
   var ano: Int = 2020,
   var assunto:String  = "",
