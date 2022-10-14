@@ -1,8 +1,10 @@
 package com.renantorres.simuladorconcurso.config
 
+import com.renantorres.simuladorconcurso.model.Banca
 import com.renantorres.simuladorconcurso.model.EngineerArea
 import com.renantorres.simuladorconcurso.model.User
 import com.renantorres.simuladorconcurso.model.UserPermission
+import com.renantorres.simuladorconcurso.repository.BancaRepository
 import com.renantorres.simuladorconcurso.repository.EngineerAreaRepository
 import com.renantorres.simuladorconcurso.repository.UserRepository
 import org.slf4j.LoggerFactory
@@ -12,7 +14,8 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class DataLoader(
   private val userRepository: UserRepository,
-  private val areaRepository: EngineerAreaRepository
+  private val areaRepository: EngineerAreaRepository,
+  private val bancaRepository: BancaRepository
 ) : CommandLineRunner {
 
   private val logger = LoggerFactory.getLogger(javaClass)
@@ -21,6 +24,14 @@ class DataLoader(
     insertAdmIfUserBDIsEmpty()
 
     InsertDefaultAreasIfAreasTableIsEmpty()
+
+    if (bancaRepository.count() == 0L) {
+      listOf(
+        Banca(name = "Fgv"),
+        Banca(name = "cespe")
+      ).also { bancaRepository.saveAll(it) }
+    }
+
   }
 
   private fun InsertDefaultAreasIfAreasTableIsEmpty() {

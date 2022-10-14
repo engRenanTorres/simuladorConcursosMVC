@@ -13,9 +13,9 @@ data class Question(
 
   var banca: String = "fgv",
   var nivel: String = "",
-  //@ManyToOne
-  //var cargo: EngineerArea = EngineerArea(name = "ambiental"),
-  var cargo: String ="ambiental",
+  @ManyToOne
+  var cargo: EngineerArea = EngineerArea(),
+  //var cargo: String ="",
   var concurso:String = "",
   var ano: Int = 2020,
   var assunto:String  = "",

@@ -1,8 +1,10 @@
 package com.renantorres.simuladorconcurso.controller
 
+import com.renantorres.simuladorconcurso.model.EngineerArea
 import com.renantorres.simuladorconcurso.model.Question
 import com.renantorres.simuladorconcurso.model.QuestionAuthor
 import com.renantorres.simuladorconcurso.model.User
+import com.renantorres.simuladorconcurso.repository.BancaRepository
 import com.renantorres.simuladorconcurso.repository.EngineerAreaRepository
 import com.renantorres.simuladorconcurso.repository.QuestionAuthorRepository
 import com.renantorres.simuladorconcurso.repository.QuestionRepository
@@ -23,7 +25,8 @@ import javax.servlet.http.HttpSession
 class QuestionController(
   private val authorRepository: QuestionAuthorRepository,
   private val questionRepository: QuestionRepository,
-  private val engineerAreaRepository: EngineerAreaRepository
+  private val engineerAreaRepository: EngineerAreaRepository,
+  private val bancaRepository: BancaRepository
   ) {
 
   private val logger: Logger = LoggerFactory.getLogger(javaClass)
@@ -35,6 +38,10 @@ class QuestionController(
       "engineerAreas",
       engineerAreaRepository.findAll()
     )
+    model.addAttribute(
+      "bancas",
+      bancaRepository.findAll()
+    )
     model.addAttribute("question", Question())
     return "question"
   }
@@ -43,15 +50,16 @@ class QuestionController(
            session: HttpSession,
            redirectAttributes: RedirectAttributes
   ):String {
-    logger.info(questionMessage,"save($question)")
+    logger.info("save($question)")
     val currentUser:User = session.getAttribute("currentUser") as User
     val authorOptional: Optional<QuestionAuthor> = authorRepository.findByUserId(currentUser.id)
     val author = if(authorOptional.isPresent){
       authorOptional.get()
     } else {
       val author = QuestionAuthor(user = currentUser)
-      authorRepository.save(author).also { logger.info(questionMessage,"Autor salvo com sucesso!") }
+      authorRepository.save(author).also { logger.info("Autor salvo com sucesso!") }
     }
+
 
     question.author = author
     question.date = LocalDateTime.now()
