@@ -72,6 +72,14 @@
       </div>
     </div>
     <div class="header_toggle"><i class='bx bx-menu' id="header-toggle"></i></div>
+
+    <div class="nav-scroller py-1 mb-2">
+      <nav class="nav d-flex flex-row justify-content-around">
+        <a class="p2 text-muted" href="#" th:each="area: ${engineerAreas}">
+          <span th:text="${area.name}">Areas</span>
+        </a>
+      </nav>
+    </div>
   </header>
 
   <!-- begin of sidebar -->
@@ -82,7 +90,7 @@
           <i class='bx bx-cog nav_logo-icon'></i> <span class="nav_logo-name">Eng. de Concursos</span>
         </a>
         <div class="nav_list">
-          <a href="#" class="nav_link active">
+          <a href="#" class="nav_link">
             <i class='bx bx-grid-alt nav_icon'></i>
             <span class="nav_name">Home</span>
           </a>
@@ -94,12 +102,11 @@
             <i class='bx bx-message-square-detail nav_icon'></i>
             <span class="nav_name">Questions</span>
           </a>
-
-          <a href="questionslist.html" class="nav_link" th:href="@{/questions-list}">
+          <a href="#" class="nav_link ">
             <i class='bx bx-bookmark nav_icon'></i>
             <span class="nav_name">Questions List</span>
           </a>
-          <a href="#" class="nav_link">
+          <a href="#" class="nav_link active">
             <i class='bx bx-bookmark nav_icon'></i>
             <span class="nav_name">Test Simulator</span>
           </a>
@@ -115,28 +122,7 @@
   </div>
   <!-- end of sidebar -->
 
-  <div class="nav-scroller py-1 mb-2">
-    <nav class="nav d-flex flex-row justify-content-around">
-      <a class="p2 text-muted" href="#" th:each="area: ${engineerAreas}">
-        <span th:text="${area.name}">Areas</span>
-      </a>
-    </nav>
-  </div>
 
-  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic" th:text="#{home.title}">Page Title</h1>
-      <p class="lead my-3" th:text="#{home.subtitle}">question Sub Title.</p>
-    </div>
-  </div>
-
-  <div class="alert alert-success alert-dismissible fade show"
-       role="alert" th:if="${successMessage != null}">
-    <span th:text="${successMessage}"></span>
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
 
 </div>
 
@@ -144,7 +130,7 @@
   <div class="row">
     <div class="col-md-8 question-main">
       <div class="question-post">
-        <h1 class="question-post-title" th:text="#{home.area}">Question Area</h1>
+        <h1 class="question-post-title" th:text="#{question.area}">Question Area</h1>
         <p class="question-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
 
         <p>This question post shows a few different types of content that’s supported and styled with Bootstrap. Basic
@@ -161,11 +147,11 @@
           Aenean lacinia bibendum nulla sed consectetur.</p></div><!-- /.question-post -->
 
       <nav class="question-pagination">
-        <a class="btn btn-outline-primary" th:text="#{home.before}" href="#">
+        <a class="btn btn-outline-primary" th:text="#{question.before}" href="#">
           <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i> Older
         </a>
         <a class="btn btn-outline-secondary  disabled"
-           th:text="#{home.next}" href="#" tabindex="-1" aria-disabled="true">
+           th:text="#{question.next}" href="#" tabindex="-1" aria-disabled="true">
           Newer
           <i class="bx bx-skip-next nav_icon" style="font-size: 1.5rem;"></i>
         </a>
@@ -175,7 +161,7 @@
 
     <aside class="col-md-4 question-sidebar">
       <div class="p-4 mb-3 bg-light rounded">
-        <h4 class="font-italic" th:text="#{home.author}">About Author</h4>
+        <h4 class="font-italic" th:text="#{question.author}">About Author</h4>
         <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet
           fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
         <hr/>

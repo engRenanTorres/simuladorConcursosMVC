@@ -83,7 +83,7 @@
               <i class='bx bx-cog nav_logo-icon'></i> <span class="nav_logo-name">Eng. de Concursos</span>
             </a>
               <div class="nav_list">
-                <a href="#" class="nav_link active">
+                <a href="#" class="nav_link">
                   <i class='bx bx-grid-alt nav_icon'></i>
                   <span class="nav_name">Home</span>
                 </a>
@@ -95,7 +95,14 @@
                   <i class='bx bx-message-square-detail nav_icon'></i>
                   <span class="nav_name">Questions</span>
                 </a>
-                <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a>
+                <a href="#" class="nav_link">
+                  <i class='bx bx-bookmark nav_icon'></i>
+                  <span class="nav_name">Question List</span>
+                </a>
+                <a href="#" class="nav_link">
+                  <i class='bx bx-bookmark nav_icon'></i>
+                  <span class="nav_name">Test Simulator</span>
+                </a>
                 <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>
                 <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a> </div>
               </div>
@@ -107,27 +114,15 @@
     </div>
     <!-- end of sidebar -->
 
-    <div class="nav-scroller py-1 mb-2">
-      <nav class="nav d-flex flex-row justify-content-around">
-        <a class="p2 text-muted" href="#" th:each="area: ${engineerAreas}">
-          <span th:text="${area.name}">Areas</span>
-        </a>
-      </nav>
-    </div>
 
-  <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
-    <div class="col-md-6 px-0">
-      <h1 class="display-4 font-italic" th:text="#{home.title}" >Page Title</h1>
-      <p class="lead my-3" th:text="#{home.subtitle}" >question Sub Title.</p>
-    </div>
-  </div>
+
 </div>
 
 <main role="main" class="container">
   <div class="row">
     <div class="col-md-8 question-main">
       <div class="question-post">
-        <h2 class="question-post-title" th:text="#{home.area}" >Question Area</h2>
+        <h2 class="question-post-title" th:text="#{home.area}" >Edit question</h2>
 
         <form action="index.html" th:action="@{/question}" th:object="${question}" method="post">
           <div class="form-group d-flex flex-column">

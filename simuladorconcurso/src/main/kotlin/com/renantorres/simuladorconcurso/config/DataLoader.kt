@@ -1,21 +1,19 @@
 package com.renantorres.simuladorconcurso.config
 
-import com.renantorres.simuladorconcurso.model.Banca
-import com.renantorres.simuladorconcurso.model.EngineerArea
-import com.renantorres.simuladorconcurso.model.User
-import com.renantorres.simuladorconcurso.model.UserPermission
-import com.renantorres.simuladorconcurso.repository.BancaRepository
-import com.renantorres.simuladorconcurso.repository.EngineerAreaRepository
-import com.renantorres.simuladorconcurso.repository.UserRepository
+import com.renantorres.simuladorconcurso.model.*
+import com.renantorres.simuladorconcurso.repository.*
 import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Configuration
+import java.time.LocalDateTime
 
 @Configuration
 class DataLoader(
   private val userRepository: UserRepository,
   private val areaRepository: EngineerAreaRepository,
-  private val bancaRepository: BancaRepository
+  private val bancaRepository: BancaRepository,
+  private val questionRepository: QuestionRepository,
+  private val questionAuthorRepository: QuestionAuthorRepository
 ) : CommandLineRunner {
 
   private val logger = LoggerFactory.getLogger(javaClass)
@@ -23,18 +21,25 @@ class DataLoader(
 
     insertAdmIfUserBDIsEmpty()
 
-    InsertDefaultAreasIfAreasTableIsEmpty()
+    insertDefaultAreasIfAreasTableIsEmpty()
 
-    if (bancaRepository.count() == 0L) {
-      listOf(
-        Banca(name = "Fgv"),
-        Banca(name = "cespe")
-      ).also { bancaRepository.saveAll(it) }
-    }
+    insertBanca()
+
+    insertQuestions()
+
 
   }
 
-  private fun InsertDefaultAreasIfAreasTableIsEmpty() {
+  private fun insertBanca() {
+    if (bancaRepository.count() == 0L) {
+      listOf(
+        Banca(name = "FGV"),
+        Banca(name = "CESPE")
+      ).also { bancaRepository.saveAll(it) }
+    }
+  }
+
+  private fun insertDefaultAreasIfAreasTableIsEmpty() {
     if (areaRepository.count() == 0L) {
       listOf(
         EngineerArea(name = "Engenharia de Segurança"),
@@ -54,6 +59,35 @@ class DataLoader(
         permission = UserPermission.ADMIN
       )
       userRepository.save(userAdmin)
+    }
+  }
+
+  private fun insertQuestions(){
+    if (questionRepository.count() == 0L) {
+      val adminUser = userRepository.findAll()[0]
+      val banca = bancaRepository.findAll()[0]
+      val cargo = areaRepository.findAll()[0]
+
+      val adminQuestionAuthor = QuestionAuthor(user = adminUser)
+      questionAuthorRepository.save(adminQuestionAuthor)
+      listOf(
+        Question(
+          enunciado="Quem sou eu?",
+          alternativa="Renan",
+          banca= banca,
+          cargo=cargo,
+          date = LocalDateTime.now(),
+          author = adminQuestionAuthor
+        ),
+        Question(
+          enunciado="Quem és tu?",
+          alternativa="Geripapado",
+          banca= banca,
+          cargo=cargo,
+          date = LocalDateTime.now(),
+          author = adminQuestionAuthor
+        )
+      ).also { questionRepository.saveAll(it) }
     }
   }
 }
