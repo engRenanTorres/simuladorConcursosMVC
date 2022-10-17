@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
 @RequestMapping("/")
@@ -18,11 +17,7 @@ class IndexController(
   private val logger: Logger = LoggerFactory.getLogger(javaClass)
 
   @GetMapping
-  fun index(
-    @RequestParam(name= "page", required = false, defaultValue = "0")
-    page: Int,
-            model: Model
-  ): String {
+  fun index(model: Model): String {
     logger.info("index()...")
     model.addAttribute(
       "engineerAreas",

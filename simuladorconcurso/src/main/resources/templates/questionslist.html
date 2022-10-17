@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org" lang="pt-br">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -160,13 +160,20 @@
       </div><!-- /.question-post -->
 
       <nav class="question-pagination">
-        <a class="btn btn-outline-primary" th:text="#{question.before}" href="#">
-          <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i> Older
+        <a class="btn btn-outline-primary"
+            href="#"
+           th:classappend="${isFirst} ? 'disabled'"
+           th:href="@{'/questions-list/?page=' + ${previousPage}}"
+        >
+          <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i>
+          <span th:text="#{question.before}">Older</span>
         </a>
-        <a class="btn btn-outline-secondary  disabled"
-           th:text="#{question.next}" href="#" tabindex="-1" aria-disabled="true">
-          Newer
+        <a class="btn btn-outline-primary"
+           href="#"
+           th:classappend="${isLast} ? 'disabled'"
+           th:href="@{'/questions-list/?page=' + ${nextPage}}">
           <i class="bx bx-skip-next nav_icon" style="font-size: 1.5rem;"></i>
+          <span th:text="#{question.next}">Newer</span>
         </a>
       </nav>
 
