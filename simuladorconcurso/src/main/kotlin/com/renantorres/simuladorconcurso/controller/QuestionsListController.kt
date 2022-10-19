@@ -40,25 +40,4 @@ class QuestionsListController(
 
     return "questionslist"
   }
-  @GetMapping("/?page={page}")
-  fun list2(
-    @RequestParam(name= "page", required = false, defaultValue = "0")page: Int,
-    model: Model
-  ): String {
-
-    model.addAttribute("engineerAreas",engineerAreaRepository.findAll())
-
-    val questions = questionRepository.findAll(PageRequest.of(page,1))
-    val nextPage = if (page >= questions.totalElements-1) page else page + 1
-    val previousPage = if (page <= 0) 0 else page - 1
-
-    model.addAttribute("questions", questions )
-    model.addAttribute("nextPage", nextPage )
-    model.addAttribute("previousPage", previousPage )
-    model.addAttribute("isFirst", questions.isFirst )
-    model.addAttribute("isLast", questions.isLast )
-
-
-    return "questionslist"
-  }
 }
