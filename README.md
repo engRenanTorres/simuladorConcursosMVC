@@ -1,5 +1,5 @@
 # simuladorConcursosMVC
-Webapp de simulador de concursos de engenharia
+Webapp de gerenciador de questões concursos
 
 ## Tecnologias utilizadas
 1- Kotlin
