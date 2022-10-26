@@ -86,26 +86,27 @@
             <i class='bx bx-grid-alt nav_icon'></i>
             <span class="nav_name">Home</span>
           </a>
-          <a href="#" class="nav_link">
-            <i class='bx bx-user nav_icon'></i>
-            <span class="nav_name">Users</span>
-          </a>
+<!--          <a href="#" class="nav_link">-->
+<!--            <i class='bx bx-user nav_icon'></i>-->
+<!--            <span class="nav_name">Users</span>-->
+<!--          </a>-->
           <a class="nav_link" href="question.html" th:href="@{/question}">
             <i class='bx bx-message-square-detail nav_icon'></i>
             <span class="nav_name">Questions</span>
           </a>
 
-          <a href="questionslist.html" class="nav_link" th:href="@{/questions-list}">
+          <a href="questionslist.html" class="nav_link" th:href="@{/questionslist}">
             <i class='bx bx-bookmark nav_icon'></i>
             <span class="nav_name">Questions List</span>
           </a>
-          <a href="#" class="nav_link">
-            <i class='bx bx-bookmark nav_icon'></i>
-            <span class="nav_name">Test Simulator</span>
-          </a>
-          <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>
-          <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
-              class="nav_name">Stats</span> </a></div>
+<!--          <a href="#" class="nav_link">-->
+<!--            <i class='bx bx-bookmark nav_icon'></i>-->
+<!--            <span class="nav_name">Test Simulator</span>-->
+<!--          </a>-->
+<!--          <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>-->
+<!--          <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span-->
+<!--              class="nav_name">Stats</span> </a>-->
+        </div>
       </div>
       <a class="nav_link" th:if="${session.currentUser != null}"
          href="index.html" th:href="@{/login/logout}">
@@ -160,16 +161,6 @@
         <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum.
           Aenean lacinia bibendum nulla sed consectetur.</p></div><!-- /.question-post -->
 
-      <nav class="question-pagination">
-        <a class="btn btn-outline-primary" th:text="#{home.before}" href="#">
-          <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i> Older
-        </a>
-        <a class="btn btn-outline-secondary  disabled"
-           th:text="#{home.next}" href="#" tabindex="-1" aria-disabled="true">
-          Newer
-          <i class="bx bx-skip-next nav_icon" style="font-size: 1.5rem;"></i>
-        </a>
-      </nav>
 
     </div><!-- /.question-main -->
 

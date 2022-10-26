@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 
 @Controller
-@RequestMapping("/questions-list")
+@RequestMapping("/questionslist")
 class QuestionsListController(
   private val questionRepository: QuestionRepository,
   private val engineerAreaRepository: EngineerAreaRepository,

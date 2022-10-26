@@ -75,7 +75,7 @@ class DataLoader(
           enunciado="Quem sou eu?",
           alternativa="Renan",
           banca= banca,
-          cargo=cargo,
+          cargo= cargo,
           date = LocalDateTime.now(),
           author = adminQuestionAuthor
         ),

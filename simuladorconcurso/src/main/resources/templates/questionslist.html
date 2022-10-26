@@ -13,18 +13,18 @@
 
 
   <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}"/>
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
 
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="../static/images/favicon.png" th:href="@{images/favicon.png}"/>
+  <link rel="icon" type="image/png" href="../static/images/favicon.png" th:href="@{/images/favicon.png}"/>
   <meta name="theme-color" content="#563d7c">
 
   <!-- Custom styles for this template -->
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
   <!-- Custom styles for this template -->
-  <link href="../static/css/index.css" rel="stylesheet" th:href="@{css/index.css}"/>
+  <link href="../static/css/index.css" rel="stylesheet" th:href="@{/css/index.css}"/>
 </head>
 <body id="body-pd" class="body-pd">
 <div class="container">
@@ -43,7 +43,7 @@
       </div>
       <div class="col-4 text-center">
         <!-- <a class="question-header-logo text-dark" href="#">Large</a> -->
-        <img src="../static/images/page-logo.png" alt="Logo" height="100px" th:src="@{images/page-logo.png}"/>
+        <img src="../static/images/page-logo.png" alt="Logo" height="100px" th:src="@{/images/page-logo.png}"/>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
 
@@ -90,14 +90,14 @@
           <i class='bx bx-cog nav_logo-icon'></i> <span class="nav_logo-name">Eng. de Concursos</span>
         </a>
         <div class="nav_list">
-          <a href="#" class="nav_link">
+          <a href="index.html" class="nav_link" th:href="@{/}">
             <i class='bx bx-grid-alt nav_icon'></i>
             <span class="nav_name">Home</span>
           </a>
-          <a href="#" class="nav_link">
-            <i class='bx bx-user nav_icon'></i>
-            <span class="nav_name">Users</span>
-          </a>
+<!--          <a href="#" class="nav_link">-->
+<!--            <i class='bx bx-user nav_icon'></i>-->
+<!--            <span class="nav_name">Users</span>-->
+<!--          </a>-->
           <a class="nav_link" href="question.html" th:href="@{/question}">
             <i class='bx bx-message-square-detail nav_icon'></i>
             <span class="nav_name">Questions</span>
@@ -106,13 +106,14 @@
             <i class='bx bx-bookmark nav_icon'></i>
             <span class="nav_name">Questions List</span>
           </a>
-          <a href="#" class="nav_link">
-            <i class='bx bx-bookmark nav_icon'></i>
-            <span class="nav_name">Test Simulator</span>
-          </a>
-          <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>
-          <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span
-              class="nav_name">Stats</span> </a></div>
+<!--          <a href="#" class="nav_link">-->
+<!--            <i class='bx bx-bookmark nav_icon'></i>-->
+<!--            <span class="nav_name">Test Simulator</span>-->
+<!--          </a>-->
+<!--          <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a>-->
+<!--          <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span-->
+<!--              class="nav_name">Stats</span> </a>-->
+        </div>
       </div>
       <a class="nav_link" th:if="${session.currentUser != null}"
          href="index.html" th:href="@{/login/logout}">
@@ -163,7 +164,7 @@
         <a class="btn btn-outline-primary"
             href="#"
            th:classappend="${isFirst} ? 'disabled'"
-           th:href="@{'/questions-list/?page=' + ${previousPage}}"
+           th:href="@{'/questionslist/?page=' + ${previousPage}}"
         >
           <i class="bx bx-skip-previous nav_icon" style="font-size: 1.5rem;"></i>
           <span th:text="#{question.before}">Older</span>
@@ -171,7 +172,7 @@
         <a class="btn btn-outline-primary"
            href="#"
            th:classappend="${isLast} ? 'disabled'"
-           th:href="@{'/questions-list/?page=' + ${nextPage}}">
+           th:href="@{'/questionslist/?page=' + ${nextPage}}">
           <i class="bx bx-skip-next nav_icon" style="font-size: 1.5rem;"></i>
           <span th:text="#{question.next}">Newer</span>
         </a>
@@ -207,15 +208,15 @@
 <script src="../static/vendor/jquery/jquery.min.js"
         th:src="@{vendor/jquery/jquery.min.js}"></script>
 <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"
-        th:src="@{vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
+        th:src="@{/vendor/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="../static/vendor/jquery-easing/jquery.easing.min.js"
-        th:src="@{vendor/jquery-easing/jquery.easing.min.js}"></script>
+        th:src="@{/vendor/jquery-easing/jquery.easing.min.js}"></script>
 
 <!-- Custom scripts for all pages-->
 <script src="../static/js/sb-admin-2.min.js"
-        th:src="@{js/sb-admin-2.min.js}"></script>
+        th:src="@{/js/sb-admin-2.min.js}"></script>
 
 </body>
 </html>
