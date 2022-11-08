@@ -8,12 +8,12 @@ import javax.persistence.Table
 
 @Entity
 @Table(name = "question_author")
-data class QuestionAuthor (
-    @Id
-    @GeneratedValue
-    var id: Long = 0,
-    var about: String = "",
-    @OneToOne
-    var user: User = User()
+data class QuestionAuthor(
+  @Id
+  @GeneratedValue
+  var id: Long = 0,
+  var about: String = "",
+  @OneToOne
+  var user: User = User()
 
-  )
+)
